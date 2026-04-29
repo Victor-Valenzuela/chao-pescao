@@ -20,7 +20,7 @@
   function goBack() { activeView = 'menu'; prefillCode = ''; }
 </script>
 
-<div class="relative min-h-screen w-full flex flex-col items-center overflow-hidden">
+<div class="relative h-screen w-full flex flex-col items-center overflow-hidden">
   <!-- Background image -->
   <div
     class="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -33,7 +33,7 @@
 
     {#if activeView === 'menu'}
       <!-- Logo — positioned at 30% from top -->
-      <div class="text-center animate-fade-in" style="margin-top: 35vh;">
+      <div class="text-center animate-fade-in" style="margin-top: 25vh;">
         <img
           src="/images/logo.png"
           alt="Chao Pescao"
@@ -46,7 +46,7 @@
       <div style="flex: 1;"></div>
 
       <!-- Text + buttons at bottom -->
-      <div class="w-full flex flex-col items-center gap-5 animate-slide-up" style="margin-bottom: 7rem;">
+      <div class="w-full flex flex-col items-center gap-5 animate-slide-up" style="margin-bottom: 13rem;">
         <p class="font-title text-2xl text-white tracking-wider"
            style="text-shadow: 2px 2px 0 rgba(0,0,0,0.5), 0 0 10px rgba(0,0,0,0.3);">
           🔍 ¿Quién es el pez azul? 🔍

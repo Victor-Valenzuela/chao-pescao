@@ -134,7 +134,7 @@ export async function leaveRoom(
         const room = roomSnap.data() as Room;
         const updatedPlayers = room.players.filter((p) => p.id !== playerId);
 
-        // Delete room if not enough players to continue
+        // Delete room if empty, or if playing with not enough players
         if (
             updatedPlayers.length === 0 ||
             (room.status === "playing" && updatedPlayers.length < 3)

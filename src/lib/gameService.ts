@@ -161,6 +161,8 @@ export async function startRound(roomCode: string): Promise<void> {
             discardedPlayerIds: [],
             currentDiscard: null,
             status: "fishing",
+            fisherRoundPoints: 0,
+            endReason: null,
         };
 
         transaction.update(roomRef, {
@@ -270,26 +272,32 @@ export async function revealDiscard(roomCode: string): Promise<void> {
         }
 
         const fisherId = room.currentRound.fisherId;
-        const currentScore = room.scores[fisherId] ?? 0;
-        const { newScore, roundEnded } = calculateDiscardResult(currentScore, role);
+        const currentFisherScore = room.scores[fisherId] ?? 0;
+        const roundPoints = room.currentRound.fisherRoundPoints ?? 0;
 
-        if (roundEnded) {
-            // Pez Azul: score resets to 0, show reveal screen
+        if (role === "red") {
+            // Pez Rojo descubierto: only add to round points, NOT to total yet
+            const newRoundPoints = roundPoints + 1;
             transaction.update(roomRef, {
-                [`scores.${fisherId}`]: newScore,
-                "currentRound.currentDiscard.result": role,
-                "currentRound.status": "revealing",
-            });
-        } else {
-            // Pez Rojo: +1 point, add to discarded, show reveal screen
-            transaction.update(roomRef, {
-                [`scores.${fisherId}`]: newScore,
+                "currentRound.fisherRoundPoints": newRoundPoints,
                 "currentRound.currentDiscard.result": role,
                 "currentRound.discardedPlayerIds": [
                     ...room.currentRound.discardedPlayerIds,
                     targetPlayerId,
                 ],
                 "currentRound.status": "revealing",
+            });
+        } else {
+            // Pez Azul descubierto: fisher loses round points, blue fish point added at end of round
+            transaction.update(roomRef, {
+                "currentRound.currentDiscard.result": role,
+                "currentRound.fisherRoundPoints": 0,
+                "currentRound.discardedPlayerIds": [
+                    ...room.currentRound.discardedPlayerIds,
+                    targetPlayerId,
+                ],
+                "currentRound.status": "revealing",
+                "currentRound.endReason": "blue_found",
             });
         }
     });
@@ -320,33 +328,68 @@ export async function continueAfterReveal(roomCode: string): Promise<void> {
         }
 
         const result = room.currentRound.currentDiscard.result;
+        const fisherId = room.currentRound.fisherId;
 
         if (result === "blue") {
-            // Check if any player reached WIN_SCORE
-            const anyWinner = Object.values(room.scores).some((s) => s >= WIN_SCORE);
-            if (anyWinner) {
-                transaction.update(roomRef, {
-                    status: "finished",
-                    "currentRound.status": "ended",
-                });
-            } else {
-                transaction.update(roomRef, {
-                    "currentRound.status": "ended",
-                });
+            // Blue was found — round ends
+            // Fisher loses round points (they were never added to total, so nothing to subtract)
+            // Blue fish gets +1 (supo mentir)
+            // Red fish NOT discarded get +1 each
+            const updates: Record<string, any> = {
+                "currentRound.status": "ended",
+                "currentRound.endReason": "blue_found",
+            };
+            const targetPlayerId = room.currentRound.currentDiscard.targetPlayerId;
+            updates[`scores.${targetPlayerId}`] = (room.scores[targetPlayerId] ?? 0) + 1; // blue fish +1
+            const nonFisherIds = Object.keys(room.currentRound.roles);
+            for (const pid of nonFisherIds) {
+                if (room.currentRound.roles[pid] === "red" && !room.currentRound.discardedPlayerIds.includes(pid)) {
+                    updates[`scores.${pid}`] = (room.scores[pid] ?? 0) + 1;
+                }
             }
+            // Check win
+            const allScores = { ...room.scores };
+            for (const [k, v] of Object.entries(updates)) {
+                if (k.startsWith("scores.")) allScores[k.split(".")[1]] = v as number;
+            }
+            if (Object.values(allScores).some((s) => s >= WIN_SCORE)) {
+                updates["status"] = "finished";
+            }
+            transaction.update(roomRef, updates);
         } else {
-            // Pez Rojo — check if fisher reached WIN_SCORE
-            const fisherId = room.currentRound.fisherId;
-            const fisherScore = room.scores[fisherId] ?? 0;
-            if (fisherScore >= WIN_SCORE) {
-                transaction.update(roomRef, {
-                    status: "finished",
+            // Red was found — check if only blue fish remains
+            const nonFisherIds = Object.keys(room.currentRound.roles);
+            const remainingIds = nonFisherIds.filter(
+                (id) => !room.currentRound!.discardedPlayerIds.includes(id)
+            );
+
+            if (remainingIds.length === 1 && room.currentRound.roles[remainingIds[0]] === "blue") {
+                // Only blue fish left! Fisher gets round points + 1 bonus
+                const fisherScore = room.scores[fisherId] ?? 0;
+                const roundPts = room.currentRound.fisherRoundPoints ?? 0;
+                const newFisherScore = fisherScore + roundPts + 1;
+                const updates: Record<string, any> = {
+                    [`scores.${fisherId}`]: newFisherScore,
                     "currentRound.status": "ended",
-                });
+                    "currentRound.endReason": "last_blue",
+                };
+                if (newFisherScore >= WIN_SCORE) {
+                    updates["status"] = "finished";
+                }
+                transaction.update(roomRef, updates);
             } else {
-                transaction.update(roomRef, {
-                    "currentRound.status": "fishing",
-                });
+                // More fish remain — continue fishing
+                const fisherScore = room.scores[fisherId] ?? 0;
+                if (fisherScore >= WIN_SCORE) {
+                    transaction.update(roomRef, {
+                        status: "finished",
+                        "currentRound.status": "ended",
+                    });
+                } else {
+                    transaction.update(roomRef, {
+                        "currentRound.status": "fishing",
+                    });
+                }
             }
         }
     });
@@ -370,9 +413,35 @@ export async function stopFishing(roomCode: string): Promise<void> {
             throw new GameServiceError("INVALID_STATE");
         }
 
-        transaction.update(roomRef, {
+        const fisherId = room.currentRound.fisherId;
+        const roundPoints = room.currentRound.fisherRoundPoints ?? 0;
+        const currentFisherScore = room.scores[fisherId] ?? 0;
+
+        const updates: Record<string, any> = {
             "currentRound.status": "ended",
-        });
+            "currentRound.endReason": "fisher_stopped",
+            [`scores.${fisherId}`]: currentFisherScore + roundPoints, // add round points to total
+        };
+
+        // Red fish NOT discarded get +1 point each (they survived)
+        const nonFisherIds = Object.keys(room.currentRound.roles);
+        for (const pid of nonFisherIds) {
+            if (room.currentRound.roles[pid] === "red" && !room.currentRound.discardedPlayerIds.includes(pid)) {
+                updates[`scores.${pid}`] = (room.scores[pid] ?? 0) + 1;
+            }
+        }
+        // Blue fish not discovered gets 0 (already default)
+
+        // Check win
+        const allScores = { ...room.scores };
+        for (const [k, v] of Object.entries(updates)) {
+            if (k.startsWith("scores.")) allScores[k.split(".")[1]] = v as number;
+        }
+        if (Object.values(allScores).some((s) => s >= WIN_SCORE)) {
+            updates["status"] = "finished";
+        }
+
+        transaction.update(roomRef, updates);
     });
 }
 

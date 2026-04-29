@@ -79,12 +79,5 @@ src/
 
 ## Pendientes
 
-- [ ] **Regla de puntuación:** Al descartar al pez azul, el pescador debe perder solo los puntos ganados en esa ronda, no todos los acumulados durante el juego
-
-## Pendientes
-
-- [ ] Regla de puntuación: al descartar al pez azul, el pescador pierde solo los puntos ganados en esa ronda, no todos los acumulados
-- [ ] Arreglar posición del botón "Terminar turno" en la vista del pescador
-- [ ] Buscar y subir preguntas nuevas más difíciles/interesantes con sus respuestas
-- [ ] Configurar PWA (Progressive Web App) para que aparezca la opción de instalar en celulares y computadores
 - [ ] Tutorial inicial con las reglas del juego y sistema de puntuación, con opción "No volver a mostrar"
+- [ ] Animación de suma de puntos al terminar la ronda (score previo + puntos ganados)

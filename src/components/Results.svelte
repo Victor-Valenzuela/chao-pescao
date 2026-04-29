@@ -1,37 +1,42 @@
 <script>
   import { generateRanking } from '../lib/gameService';
+  import { playerStore, setCurrentRoom } from '../stores/playerStore';
+  import { leaveRoom } from '../lib/roomService';
+  import { get } from 'svelte/store';
 
-  let { scores, players } = $props();
+  let { scores, players, roomCode = '' } = $props();
 
   let ranking = $derived(generateRanking(scores ?? {}, players ?? []));
 
-  function handleBackToLobby() {
+  async function handleBackToLobby() {
+    const localPlayerId = get(playerStore).playerId;
+    try {
+      if (roomCode) await leaveRoom(roomCode, localPlayerId);
+    } catch {}
+    setCurrentRoom(null);
     window.location.href = '/';
   }
 </script>
 
-<div class="w-full max-w-sm bg-white rounded-2xl p-6 shadow-md text-center">
-  <h2 class="text-xl font-bold text-gray-800 mb-2">🏆 Resultados Finales</h2>
-  <p class="text-gray-400 text-sm mb-4">Partida finalizada</p>
+<div class="scoreboard-card">
+  <h2 class="scoreboard-title">🏆 Resultados Finales</h2>
+  <p class="results-subtitle">Partida finalizada</p>
 
   {#if ranking.length}
-    <ul class="flex flex-col gap-2 mb-6">
+    <div class="scoreboard-list">
       {#each ranking as entry, i}
-        <li class="flex items-center justify-between min-h-[44px] px-4 py-2 rounded-lg {i === 0 ? 'bg-yellow-100 border-2 border-yellow-400' : 'bg-gray-50'}">
-          <span class="text-base text-gray-800">
+        <div class="scoreboard-row {i === 0 ? 'scoreboard-row-first' : ''}">
+          <span class="scoreboard-pos">
             {#if i === 0}👑{:else}{i + 1}.{/if}
-            <span class="{i === 0 ? 'font-bold' : ''}">{entry.name}</span>
           </span>
-          <span class="text-lg font-bold {i === 0 ? 'text-yellow-600' : 'text-blue-700'}">{entry.score}</span>
-        </li>
+          <span class="scoreboard-name">{entry.name}</span>
+          <span class="scoreboard-score">{entry.score}</span>
+        </div>
       {/each}
-    </ul>
+    </div>
   {/if}
 
-  <button
-    onclick={handleBackToLobby}
-    class="w-full min-h-[44px] bg-blue-600 text-white font-semibold text-lg rounded-lg hover:bg-blue-700 active:bg-blue-800 transition-colors"
-  >
-    Volver al Lobby
+  <button onclick={handleBackToLobby} class="scoreboard-btn scoreboard-btn-cyan">
+    🏠 Volver al Inicio
   </button>
 </div>

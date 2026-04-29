@@ -6,15 +6,19 @@ import SalaPage from '../components/SalaPage.svelte';
 <html lang="es">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+		<link rel="icon" type="image/png" href="/images/favicon-96x96.png" sizes="96x96" />
+		<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+		<link rel="shortcut icon" href="/images/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet" />
+		<link rel="manifest" href="/images/site.webmanifest" />
+		<meta name="theme-color" content="#0a5e8a" />
 		<title>Sala — Chao Pescao</title>
 	</head>
-	<body class="m-0 p-0 font-body">
+	<body class="m-0 p-0 font-body" style="background-color: #0a5e8a; background-image: url('/images/fondomain.png'); background-size: cover; background-position: center; min-height: 100vh;">
 		<SalaPage client:load />
 	</body>
 </html>

@@ -140,6 +140,7 @@
           question={currentRound.question.text}
           players={nonFisherPlayers}
           discardedPlayerIds={currentRound.discardedPlayerIds}
+          roundPoints={currentRound.fisherRoundPoints ?? 0}
         />
       {:else if currentRound.discardedPlayerIds.includes(localPlayerId)}
         <!-- Discarded player sees eliminated screen -->
@@ -178,11 +179,16 @@
         scores={roomData.scores}
         players={roomData.players}
         onNextRound={handleNextRound}
+        endReason={currentRound.endReason ?? null}
+        {isFisher}
+        localPlayerId={localPlayerId}
+        roles={currentRound.roles}
+        discardedPlayerIds={currentRound.discardedPlayerIds}
       />
     {/if}
   </div>
 
 {:else if roomData?.status === 'finished'}
-  <Results scores={roomData.scores} players={roomData.players} />
+  <Results scores={roomData.scores} players={roomData.players} {roomCode} />
 {/if}
 

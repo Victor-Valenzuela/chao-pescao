@@ -93,7 +93,7 @@
               <span class="player-dot {player.isConnected ? 'dot-online' : 'dot-offline'}"></span>
               <span class="player-name">{player.name}</span>
               {#if player.id === roomData.hostId}
-                <span class="host-badge">👑 Anfitrión</span>
+                <span class="host-badge">👑</span>
               {/if}
             </li>
           {/each}

@@ -28,6 +28,8 @@ export interface RoundState {
     discardedPlayerIds: string[];
     currentDiscard: DiscardState | null;
     status: "assigning" | "fishing" | "discarding" | "revealing" | "ended";
+    fisherRoundPoints: number; // Points earned by fisher this round
+    endReason?: "blue_found" | "fisher_stopped" | "last_blue" | null; // Why the round ended
 }
 
 export interface DiscardState {

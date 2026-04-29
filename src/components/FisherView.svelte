@@ -1,7 +1,7 @@
 <script>
   import { discardPlayer, stopFishing } from '../lib/gameService';
 
-  let { roomCode, question, players, discardedPlayerIds } = $props();
+  let { roomCode, question, players, discardedPlayerIds, roundPoints = 0 } = $props();
 
   let loading = $state(false);
   let error = $state('');
@@ -100,7 +100,12 @@
       {/if}
     </button>
 
-    <button onclick={handleStop} disabled={loading} class="stop-btn">
+    <div class="round-points-display">
+      <span class="round-points-label">Puntos esta ronda:</span>
+      <span class="round-points-value">{roundPoints}</span>
+    </div>
+
+    <button onclick={handleStop} disabled={loading} class="stop-btn" style="margin-top: 1.5rem;">
       {loading ? '⏳...' : '✋ Terminar turno'}
     </button>
   </div>

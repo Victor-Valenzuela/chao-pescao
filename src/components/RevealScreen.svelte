@@ -31,7 +31,7 @@
       <div class="reveal-result reveal-fade-in">
         <p class="reveal-result-title reveal-title-red">¡Pez Rojo!</p>
         {#if isFisher}
-          <p class="reveal-result-subtitle">🎯 {targetPlayerName} era un mentiroso</p>
+          <p class="reveal-result-subtitle">🎯 {targetPlayerName} estaba mintiendo</p>
           <p class="reveal-points reveal-points-green">+1 punto para ti</p>
         {:else if isTargetPlayer}
           <p class="reveal-result-subtitle">😅 ¡Te descubrieron mintiendo!</p>

@@ -1,0 +1,16 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Salas de juego: lectura y escritura para todos los jugadores
+    match /rooms/{roomCode} {
+      allow read, write: if true;
+    }
+
+    // Banco de preguntas: solo lectura
+    match /questions/{questionId} {
+      allow read: if true;
+      allow write: if false;
+    }
+  }
+}

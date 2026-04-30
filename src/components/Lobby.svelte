@@ -88,12 +88,12 @@
 
       {#if roomData?.players?.length}
         <ul class="player-list">
-          {#each roomData.players as player}
-            <li class="player-item">
-              <span class="player-dot {player.isConnected ? 'dot-online' : 'dot-offline'}"></span>
+          {#each roomData.players as player, i}
+            <li class="player-item {player.id === localPlayerId ? 'player-item-me' : ''}">
+              <img src={`/images/avatares/${player.avatar ?? 'magikarp'}.png`} alt={player.avatar ?? ''} class="player-avatar-img" style="animation-delay: {i * 0.4}s;" />
               <span class="player-name">{player.name}</span>
-              {#if player.id === roomData.hostId}
-                <span class="host-badge">👑</span>
+              {#if player.id === localPlayerId}
+                <span class="me-badge">Tú</span>
               {/if}
             </li>
           {/each}

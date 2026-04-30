@@ -16,6 +16,7 @@ export interface Room {
 export interface Player {
     id: string;
     name: string;
+    avatar: string;
     isConnected: boolean;
     joinedAt: Timestamp;
 }
@@ -59,7 +60,7 @@ export interface LocalPlayerState {
 
 // --- Tipos de error ---
 
-export type RoomError = "ROOM_NOT_FOUND" | "GAME_ALREADY_STARTED";
+export type RoomError = "ROOM_NOT_FOUND" | "GAME_ALREADY_STARTED" | "NAME_TAKEN" | "AVATAR_TAKEN";
 
 export type GameError =
     | "NOT_ENOUGH_PLAYERS"

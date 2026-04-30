@@ -63,14 +63,14 @@
     {/if}
 
     {#if activeView === 'create'}
-      <div class="w-full animate-slide-up" style="margin-top: 30vh;">
+      <div class="w-full animate-slide-up" style="margin-top: 23vh;">
         <button onclick={goBack} class="neo-back-btn mb-4">← Volver</button>
         <CreateRoom />
       </div>
     {/if}
 
     {#if activeView === 'join'}
-      <div class="w-full animate-slide-up" style="margin-top: 30vh;">
+      <div class="w-full animate-slide-up" style="margin-top: 12vh;">
         <button onclick={goBack} class="neo-back-btn mb-4">← Volver</button>
         <JoinRoom initialCode={prefillCode} />
       </div>

@@ -30,13 +30,14 @@ export function generateRoomCode(): string {
  * Creates a new room in Firestore with the given host name.
  * Returns the generated room code.
  */
-export async function createRoom(hostName: string, playerId: string): Promise<string> {
+export async function createRoom(hostName: string, playerId: string, avatar: string): Promise<string> {
     const code = generateRoomCode();
     const hostId = playerId;
 
     const host: Player = {
         id: hostId,
         name: hostName,
+        avatar,
         isConnected: true,
         joinedAt: Timestamp.now() as any,
     };
@@ -65,6 +66,7 @@ export async function joinRoom(
     roomCode: string,
     playerName: string,
     playerId: string,
+    avatar: string,
 ): Promise<void> {
     await runTransaction(db, async (transaction) => {
         const roomRef = doc(db, "rooms", roomCode);
@@ -80,9 +82,22 @@ export async function joinRoom(
             throw new RoomServiceError("GAME_ALREADY_STARTED");
         }
 
+        const nameTaken = room.players.some(
+            (p) => p.name.toLowerCase() === playerName.toLowerCase()
+        );
+        if (nameTaken) {
+            throw new RoomServiceError("NAME_TAKEN");
+        }
+
+        const avatarTaken = room.players.some((p) => p.avatar === avatar);
+        if (avatarTaken) {
+            throw new RoomServiceError("AVATAR_TAKEN");
+        }
+
         const newPlayer: Player = {
             id: playerId,
             name: playerName,
+            avatar,
             isConnected: true,
             joinedAt: Timestamp.now() as any,
         };
@@ -180,6 +195,8 @@ export class RoomServiceError extends Error {
         const messages: Record<RoomError, string> = {
             ROOM_NOT_FOUND: "La sala no existe",
             GAME_ALREADY_STARTED: "La partida ya está en curso",
+            NAME_TAKEN: "Ya hay un jugador con ese nombre en la sala",
+            AVATAR_TAKEN: "Ese avatar ya fue elegido por otro jugador",
         };
         super(messages[code]);
         this.code = code;

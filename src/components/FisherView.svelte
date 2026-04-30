@@ -60,7 +60,9 @@
           disabled={loading}
           class="fish-card {selectedPlayerId === player.id ? 'fish-card-selected' : ''}"
         >
-          <div class="fish-card-mystery">?</div>
+          <div class="fish-card-mystery">
+            <img src={`/images/avatares/${player.avatar ?? 'magikarp'}.png`} alt={player.avatar ?? ''} class="fish-card-avatar-img" />
+          </div>
           <span class="fish-card-name">{player.name}</span>
           {#if selectedPlayerId === player.id}
             <span class="fish-card-check">✓</span>

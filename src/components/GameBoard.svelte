@@ -12,6 +12,7 @@
   import RevealScreen from './RevealScreen.svelte';
   import Scoreboard from './Scoreboard.svelte';
   import Results from './Results.svelte';
+  import Tutorial from './Tutorial.svelte';
 
   let { roomCode } = $props();
 
@@ -19,6 +20,9 @@
   let localPlayerId = $state('');
   let roomWasLoaded = $state(false);
   let showScorePanel = $state(false);
+  let showTutorial = $state(
+    typeof window !== 'undefined' && localStorage.getItem('tutorial_seen') !== 'true'
+  );
 
   $effect(() => {
     const unsub = room.subscribe((value) => {
@@ -39,6 +43,14 @@
 
   let currentRound = $derived(roomData?.currentRound ?? null);
   let roundStatus = $derived(currentRound?.status ?? null);
+  let prevScores = $state({});
+
+  $effect(() => {
+    if (roundStatus && roundStatus !== 'ended' && roomData?.scores) {
+      prevScores = { ...roomData.scores };
+    }
+  });
+
   let isFisher = $derived(localPlayerId === currentRound?.fisherId);
   let nonFisherPlayers = $derived(
     (roomData?.players ?? []).filter((p) => p.id !== currentRound?.fisherId)
@@ -46,6 +58,9 @@
   let localRole = $derived(currentRound?.roles?.[localPlayerId] ?? null);
   let localPlayerName = $derived(
     roomData?.players?.find((p) => p.id === localPlayerId)?.name ?? ''
+  );
+  let localPlayerAvatar = $derived(
+    roomData?.players?.find((p) => p.id === localPlayerId)?.avatar ?? 'magikarp'
   );
   let localScore = $derived(roomData?.scores?.[localPlayerId] ?? 0);
   let targetPlayerName = $derived.by(() => {
@@ -107,7 +122,7 @@
   <!-- Top navbar -->
   <div class="game-navbar">
     <button onclick={toggleScorePanel} class="score-btn" title="Ver marcador">
-      🏆 {localScore}
+      <img src={`/images/avatares/${localPlayerAvatar}.png`} alt={localPlayerAvatar} class="score-btn-avatar" /> {localScore}
     </button>
     <div class="navbar-center">
       <p class="navbar-name">{localPlayerName}</p>
@@ -123,6 +138,7 @@
         <h3 class="score-panel-title">🏆 Marcador</h3>
         {#each [...(roomData.players ?? [])].sort((a, b) => (roomData.scores?.[b.id] ?? 0) - (roomData.scores?.[a.id] ?? 0)) as player, i}
           <div class="score-row {player.id === localPlayerId ? 'score-row-me' : ''}">
+            <img src={`/images/avatares/${player.avatar ?? 'magikarp'}.png`} alt={player.avatar ?? ''} class="player-avatar-img" />
             <span class="score-name">{player.name}</span>
             <span class="score-badge score-badge-{Math.min(i + 1, 4)}">{roomData.scores?.[player.id] ?? 0}</span>
           </div>
@@ -176,6 +192,7 @@
     {:else if roundStatus === 'ended'}
       <Scoreboard
         scores={roomData.scores}
+        {prevScores}
         players={roomData.players}
         onNextRound={handleNextRound}
         endReason={currentRound.endReason ?? null}
@@ -186,6 +203,10 @@
       />
     {/if}
   </div>
+
+  {#if showTutorial}
+    <Tutorial onClose={() => showTutorial = false} />
+  {/if}
 
 {:else if roomData?.status === 'finished'}
   <Results scores={roomData.scores} players={roomData.players} {roomCode} />

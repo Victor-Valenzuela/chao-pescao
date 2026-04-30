@@ -78,7 +78,14 @@ src/
 7. **Antes de cada deploy a producción**, subir las preguntas con respuestas reales: `npx tsx scripts/seed-production.ts`
 8. Deploy: `npm run build && npx firebase deploy`
 
+## ⚠️ Importante: Manejo de respuestas
+
+Las preguntas en Firestore pueden tener respuestas reales o ocultas (`???`). Para no spoilearse durante el desarrollo:
+
+1. **Para testear en local:** `npx tsx scripts/seed-hidden-answers.ts` (160 preguntas con respuesta `???`)
+2. **Antes de deploy a producción:** `npx tsx scripts/seed-production.ts` (160 preguntas con respuestas reales)
+3. **Después del deploy:** volver a correr el paso 1 para ocultar las respuestas
+
 ## Pendientes
 
-- [ ] Tutorial inicial con las reglas del juego y sistema de puntuación, con opción "No volver a mostrar"
-- [ ] Animación de suma de puntos al terminar la ronda (score previo + puntos ganados)
+- [ ] Multi-idioma (español, inglés, alemán): selector de banderas al iniciar la app, opción de idioma por defecto en localStorage, traducción de UI y preguntas/respuestas

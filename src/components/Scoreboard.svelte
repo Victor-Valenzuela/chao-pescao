@@ -1,7 +1,7 @@
 <script>
   import { WIN_SCORE } from '../lib/gameService';
 
-  let { scores, players, onNextRound, endReason = null, isFisher = false, localPlayerId = '', roles = {}, discardedPlayerIds = [] } = $props();
+  let { scores, prevScores = {}, players, onNextRound, endReason = null, isFisher = false, localPlayerId = '', roles = {}, discardedPlayerIds = [] } = $props();
 
   let sortedPlayers = $derived(
     [...(players ?? [])].sort((a, b) => (scores?.[b.id] ?? 0) - (scores?.[a.id] ?? 0))
@@ -13,6 +13,12 @@
 
   let localRole = $derived(roles?.[localPlayerId] ?? null);
   let wasDiscarded = $derived(discardedPlayerIds.includes(localPlayerId));
+
+  function pointsDiff(playerId) {
+    const current = scores?.[playerId] ?? 0;
+    const prev = prevScores?.[playerId] ?? 0;
+    return current - prev;
+  }
 </script>
 
 <div class="scoreboard-card">
@@ -53,8 +59,14 @@
     <div class="scoreboard-list">
       {#each sortedPlayers as player, i}
         <div class="scoreboard-row {i === 0 ? 'scoreboard-row-first' : ''}">
+          <img src={`/images/avatares/${player.avatar ?? 'magikarp'}.png`} alt={player.avatar ?? ''} class="player-avatar-img" />
           <span class="scoreboard-name">{player.name}</span>
           <span class="score-badge score-badge-{Math.min(i + 1, 4)}">{scores?.[player.id] ?? 0}</span>
+          {#if pointsDiff(player.id) > 0}
+            <span class="score-diff score-diff-positive">+{pointsDiff(player.id)}</span>
+          {:else if pointsDiff(player.id) < 0}
+            <span class="score-diff score-diff-negative">{pointsDiff(player.id)}</span>
+          {/if}
         </div>
       {/each}
     </div>

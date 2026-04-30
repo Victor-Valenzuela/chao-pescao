@@ -459,9 +459,9 @@ export async function nextRound(roomCode: string): Promise<void> {
  */
 export function generateRanking(
     scores: Record<string, number>,
-    players: { id: string; name: string }[],
-): { id: string; name: string; score: number }[] {
+    players: { id: string; name: string; avatar?: string }[],
+): { id: string; name: string; avatar: string; score: number }[] {
     return players
-        .map((p) => ({ id: p.id, name: p.name, score: scores[p.id] ?? 0 }))
+        .map((p) => ({ id: p.id, name: p.name, avatar: p.avatar ?? 'magikarp', score: scores[p.id] ?? 0 }))
         .sort((a, b) => b.score - a.score);
 }

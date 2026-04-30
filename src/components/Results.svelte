@@ -26,6 +26,7 @@
     <div class="scoreboard-list">
       {#each ranking as entry, i}
         <div class="scoreboard-row {i === 0 ? 'scoreboard-row-first' : ''}">
+          <img src={`/images/avatares/${entry.avatar ?? 'magikarp'}.png`} alt={entry.avatar ?? ''} class="player-avatar-img" />
           <span class="scoreboard-name">{entry.name}</span>
           <span class="score-badge score-badge-{Math.min(i + 1, 4)}">{entry.score}</span>
         </div>

@@ -123,9 +123,11 @@
         <h3 class="score-panel-title">🏆 Marcador</h3>
         {#each [...(roomData.players ?? [])].sort((a, b) => (roomData.scores?.[b.id] ?? 0) - (roomData.scores?.[a.id] ?? 0)) as player, i}
           <div class="score-row {player.id === localPlayerId ? 'score-row-me' : ''}">
-            <span class="score-pos">{i === 0 ? '👑' : `${i + 1}.`}</span>
             <span class="score-name">{player.name}</span>
-            <span class="score-val">{roomData.scores?.[player.id] ?? 0}</span>
+            <span class="score-badge-wrap">
+              <img src={`/images/score-${Math.min(i + 1, 4)}.png`} alt={`Posición ${i + 1}`} />
+              <span class="score-badge-num">{roomData.scores?.[player.id] ?? 0}</span>
+            </span>
           </div>
         {/each}
       </div>

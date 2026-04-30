@@ -79,5 +79,6 @@ src/
 
 ## Pendientes
 
+- [ ] Revisar PWA: manifest e iconos configurados pero la opción de instalar no aparece en el navegador
 - [ ] Tutorial inicial con las reglas del juego y sistema de puntuación, con opción "No volver a mostrar"
 - [ ] Animación de suma de puntos al terminar la ronda (score previo + puntos ganados)

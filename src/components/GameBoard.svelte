@@ -124,10 +124,7 @@
         {#each [...(roomData.players ?? [])].sort((a, b) => (roomData.scores?.[b.id] ?? 0) - (roomData.scores?.[a.id] ?? 0)) as player, i}
           <div class="score-row {player.id === localPlayerId ? 'score-row-me' : ''}">
             <span class="score-name">{player.name}</span>
-            <span class="score-badge-wrap">
-              <img src={`/images/score-${Math.min(i + 1, 4)}.png`} alt={`Posición ${i + 1}`} />
-              <span class="score-badge-num">{roomData.scores?.[player.id] ?? 0}</span>
-            </span>
+            <span class="score-badge score-badge-{Math.min(i + 1, 4)}">{roomData.scores?.[player.id] ?? 0}</span>
           </div>
         {/each}
       </div>
@@ -148,7 +145,7 @@
         <!-- Discarded player sees eliminated screen -->
         <div class="eliminated-screen">
           <p class="eliminated-emoji">💀</p>
-          <p class="eliminated-title">¡Fuiste descartado!</p>
+          <p class="eliminated-title">¡Te pescaron!</p>
           <p class="eliminated-text">Espera a que termine la ronda</p>
         </div>
       {:else if localRole}

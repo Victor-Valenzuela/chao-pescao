@@ -27,10 +27,7 @@
       {#each ranking as entry, i}
         <div class="scoreboard-row {i === 0 ? 'scoreboard-row-first' : ''}">
           <span class="scoreboard-name">{entry.name}</span>
-          <span class="score-badge-wrap">
-            <img src={`/images/score-${Math.min(i + 1, 4)}.png`} alt={`Posición ${i + 1}`} />
-            <span class="score-badge-num">{entry.score}</span>
-          </span>
+          <span class="score-badge score-badge-{Math.min(i + 1, 4)}">{entry.score}</span>
         </div>
       {/each}
     </div>

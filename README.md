@@ -75,11 +75,10 @@ src/
 4. Actualizar credenciales en `src/lib/firebase.ts`
 5. Actualizar proyecto en `.firebaserc`
 6. Subir preguntas: `npx tsx scripts/seed-questions.ts`
-7. Deploy: `npm run build && npx firebase deploy`
+7. **Antes de cada deploy a producción**, subir las preguntas con respuestas reales: `npx tsx scripts/seed-production.ts`
+8. Deploy: `npm run build && npx firebase deploy`
 
 ## Pendientes
 
 - [ ] Tutorial inicial con las reglas del juego y sistema de puntuación, con opción "No volver a mostrar"
 - [ ] Animación de suma de puntos al terminar la ronda (score previo + puntos ganados)
-- [ ] Mejorar iconos o símbolos de puntos — pendiente centrar los números dentro de los badges de puntaje
-- [x] Revisar longitud de las preguntas (máx: 26 palabras / 148 chars)

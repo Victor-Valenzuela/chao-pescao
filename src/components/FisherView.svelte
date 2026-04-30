@@ -75,7 +75,7 @@
   <!-- Discarded -->
   {#if discardedPlayers.length}
     <div class="discarded-section">
-      <p class="discarded-label">Descartados</p>
+      <p class="discarded-label">Pescados</p>
       <div class="discarded-list">
         {#each discardedPlayers as player}
           <span class="discarded-chip">💀 {player.name}</span>

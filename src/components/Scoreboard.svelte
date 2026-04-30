@@ -54,10 +54,7 @@
       {#each sortedPlayers as player, i}
         <div class="scoreboard-row {i === 0 ? 'scoreboard-row-first' : ''}">
           <span class="scoreboard-name">{player.name}</span>
-          <span class="score-badge-wrap">
-            <img src={`/images/score-${Math.min(i + 1, 4)}.png`} alt={`Posición ${i + 1}`} />
-            <span class="score-badge-num">{scores?.[player.id] ?? 0}</span>
-          </span>
+          <span class="score-badge score-badge-{Math.min(i + 1, 4)}">{scores?.[player.id] ?? 0}</span>
         </div>
       {/each}
     </div>

@@ -1,5 +1,6 @@
 <script>
   import { continueAfterReveal } from '../lib/gameService';
+  import { tt } from '../lib/i18n/index';
 
   let { roomCode, currentDiscard, targetPlayerName, isFisher = false, isTargetPlayer = false, targetRole = null } = $props();
 
@@ -7,6 +8,12 @@
   let isRed = $derived(result === 'red');
   let isBlue = $derived(result === 'blue');
   let loading = $state(false);
+
+  let t = $state((key, params) => key);
+  $effect(() => {
+    const unsub = tt.subscribe((fn) => { t = fn; });
+    return unsub;
+  });
 
   async function handleContinue() {
     if (loading) return;
@@ -22,49 +29,49 @@
     <div class="reveal-fish-container">
       <img
         src={isRed ? '/images/pez-rojo.png' : '/images/pez-azul.png'}
-        alt={isRed ? 'Pez Rojo' : 'Pez Azul'}
+        alt={isRed ? 'Red Fish' : 'Blue Fish'}
         class="reveal-fish-img reveal-fish-appear"
       />
     </div>
 
     {#if isRed}
       <div class="reveal-result reveal-fade-in">
-        <p class="reveal-result-title reveal-title-red">¡Pez Rojo!</p>
+        <p class="reveal-result-title reveal-title-red">{t('reveal.redTitle')}</p>
         {#if isFisher}
-          <p class="reveal-result-subtitle">🎯 {targetPlayerName} estaba mintiendo</p>
-          <p class="reveal-points reveal-points-green">+1 punto para ti</p>
+          <p class="reveal-result-subtitle">{t('reveal.red.fisher', { name: targetPlayerName })}</p>
+          <p class="reveal-points reveal-points-green">{t('reveal.red.fisherPoints')}</p>
         {:else if isTargetPlayer}
-          <p class="reveal-result-subtitle">😅 ¡Te descubrieron mintiendo!</p>
-          <p class="reveal-points reveal-points-red">El pescador gana +1 punto</p>
+          <p class="reveal-result-subtitle">{t('reveal.red.target')}</p>
+          <p class="reveal-points reveal-points-red">{t('reveal.red.targetPoints')}</p>
         {:else}
-          <p class="reveal-result-subtitle">🎯 Descubrieron a {targetPlayerName} mintiendo</p>
-          <p class="reveal-points reveal-points-red">El pescador gana +1 punto</p>
+          <p class="reveal-result-subtitle">{t('reveal.red.other', { name: targetPlayerName })}</p>
+          <p class="reveal-points reveal-points-red">{t('reveal.red.otherPoints')}</p>
         {/if}
       </div>
     {:else if isBlue}
       <div class="reveal-result reveal-fade-in">
-        <p class="reveal-result-title reveal-title-blue">¡Pez Azul!</p>
+        <p class="reveal-result-title reveal-title-blue">{t('reveal.blueTitle')}</p>
         {#if isFisher}
-          <p class="reveal-result-subtitle">😱 {targetPlayerName} decía la verdad</p>
-          <p class="reveal-points reveal-points-red">Pierdes todos tus puntos</p>
+          <p class="reveal-result-subtitle">{t('reveal.blue.fisher', { name: targetPlayerName })}</p>
+          <p class="reveal-points reveal-points-red">{t('reveal.blue.fisherPoints')}</p>
         {:else if isTargetPlayer}
-          <p class="reveal-result-subtitle">🎉 ¡Decías la verdad!</p>
-          <p class="reveal-points reveal-points-green">El pescador pierde todos sus puntos</p>
+          <p class="reveal-result-subtitle">{t('reveal.blue.target')}</p>
+          <p class="reveal-points reveal-points-green">{t('reveal.blue.targetPoints')}</p>
         {:else}
-          <p class="reveal-result-subtitle">😱 {targetPlayerName} decía la verdad</p>
-          <p class="reveal-points reveal-points-green">El pescador pierde todos sus puntos</p>
+          <p class="reveal-result-subtitle">{t('reveal.blue.other', { name: targetPlayerName })}</p>
+          <p class="reveal-points reveal-points-green">{t('reveal.blue.otherPoints')}</p>
         {/if}
       </div>
     {/if}
 
     {#if isFisher}
       <button onclick={handleContinue} disabled={loading} class="reveal-continue-btn">
-        {loading ? '⏳...' : '▶ Continuar'}
+        {loading ? '⏳...' : t('reveal.continue')}
       </button>
     {:else}
-      <p class="discard-hint">Esperando al pescador...</p>
+      <p class="discard-hint">{t('reveal.waiting')}</p>
     {/if}
   {:else}
-    <p class="reveal-loading">🔍 Revelando...</p>
+    <p class="reveal-loading">{t('reveal.loading')}</p>
   {/if}
 </div>

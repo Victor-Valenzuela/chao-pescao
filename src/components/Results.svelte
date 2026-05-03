@@ -3,10 +3,17 @@
   import { playerStore, setCurrentRoom } from '../stores/playerStore';
   import { leaveRoom } from '../lib/roomService';
   import { get } from 'svelte/store';
+  import { tt } from '../lib/i18n/index';
 
   let { scores, players, roomCode = '' } = $props();
 
   let ranking = $derived(generateRanking(scores ?? {}, players ?? []));
+
+  let t = $state((key, params) => key);
+  $effect(() => {
+    const unsub = tt.subscribe((fn) => { t = fn; });
+    return unsub;
+  });
 
   async function handleBackToLobby() {
     const localPlayerId = get(playerStore).playerId;
@@ -19,8 +26,8 @@
 </script>
 
 <div class="scoreboard-card">
-  <h2 class="scoreboard-title">🏆 Resultados Finales</h2>
-  <p class="results-subtitle">Partida finalizada</p>
+  <h2 class="scoreboard-title">{t('results.title')}</h2>
+  <p class="results-subtitle">{t('results.subtitle')}</p>
 
   {#if ranking.length}
     <div class="scoreboard-list">
@@ -35,6 +42,6 @@
   {/if}
 
   <button onclick={handleBackToLobby} class="scoreboard-btn scoreboard-btn-cyan">
-    🏠 Volver al Inicio
+    {t('results.backBtn')}
   </button>
 </div>

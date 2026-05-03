@@ -1,10 +1,17 @@
 <script>
   import { revealDiscard } from '../lib/gameService';
+  import { tt } from '../lib/i18n/index';
 
   let { roomCode, currentDiscard, isFisher, targetPlayerName, isTargetPlayer = false } = $props();
 
   let secondsLeft = $state(10);
   let revealed = $state(false);
+
+  let t = $state((key, params) => key);
+  $effect(() => {
+    const unsub = tt.subscribe((fn) => { t = fn; });
+    return unsub;
+  });
 
   $effect(() => {
     if (!currentDiscard?.startedAt || revealed) return;
@@ -34,23 +41,21 @@
 
 <div class="discard-screen {isFisher ? 'discard-screen-fisher' : 'discard-screen-player'}">
   {#if isFisher}
-    <!-- FISHER: fishing animation -->
-    <p class="discard-waiting-title">🎣 Pescando a...</p>
+    <p class="discard-waiting-title">{t('discard.fishingTitle')}</p>
     <p class="discard-target-name">{targetPlayerName}</p>
 
     <div class="fishing-scene">
-      <img src="/images/pez-azul.png" alt="Pez misterioso" class="fish-silhouette fish-swim-in" />
+      <img src="/images/pez-azul.png" alt="Fish" class="fish-silhouette fish-swim-in" />
     </div>
 
     <div class="discard-timer-circle">
       <span class="discard-timer-num">{secondsLeft}</span>
     </div>
-    <p class="discard-hint">Descubriendo...</p>
+    <p class="discard-hint">{t('discard.discovering')}</p>
 
   {:else}
-    <!-- ALL FISH: don't reveal who is being discarded -->
-    <p class="discard-caught-title">🎣 ¡Picó algo!</p>
-    <p class="discard-hint">Esperando revelación...</p>
+    <p class="discard-caught-title">{t('discard.caughtTitle')}</p>
+    <p class="discard-hint">{t('discard.waitingReveal')}</p>
 
     <div class="discard-timer-circle">
       <span class="discard-timer-num">{secondsLeft}</span>

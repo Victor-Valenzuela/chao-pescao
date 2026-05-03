@@ -13,6 +13,7 @@
   import Scoreboard from './Scoreboard.svelte';
   import Results from './Results.svelte';
   import Tutorial from './Tutorial.svelte';
+  import { tt } from '../lib/i18n/index';
 
   let { roomCode } = $props();
 
@@ -23,6 +24,12 @@
   let showTutorial = $state(
     typeof window !== 'undefined' && localStorage.getItem('tutorial_seen') !== 'true'
   );
+
+  let t = $state((key, params) => key);
+  $effect(() => {
+    const unsub = tt.subscribe((fn) => { t = fn; });
+    return unsub;
+  });
 
   $effect(() => {
     const unsub = room.subscribe((value) => {
@@ -80,12 +87,12 @@
 
   async function handleExit() {
     const result = await Swal.fire({
-      title: '¿Salir de la sala?',
-      text: 'Si sales, podrías perder tu progreso',
+      title: t('game.exitTitle'),
+      text: t('game.exitText'),
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Sí, salir',
-      cancelButtonText: 'Cancelar',
+      confirmButtonText: t('game.exitConfirm'),
+      cancelButtonText: t('game.exitCancel'),
       background: '#132e4a',
       color: '#fff',
       confirmButtonColor: '#e85d5d',
@@ -126,7 +133,7 @@
     </button>
     <div class="navbar-center">
       <p class="navbar-name">{localPlayerName}</p>
-      <p class="navbar-round">Ronda {currentRound.roundNumber}</p>
+      <p class="navbar-round">{t('game.round', { n: currentRound.roundNumber })}</p>
     </div>
     <button onclick={handleExit} class="game-exit-btn" title="Salir de la sala">✕</button>
   </div>
@@ -135,7 +142,7 @@
   {#if showScorePanel}
     <div class="score-overlay" onclick={toggleScorePanel}>
       <div class="score-panel" onclick={(e) => e.stopPropagation()}>
-        <h3 class="score-panel-title">🏆 Marcador</h3>
+        <h3 class="score-panel-title">{t('game.scoreTitle')}</h3>
         {#each [...(roomData.players ?? [])].sort((a, b) => (roomData.scores?.[b.id] ?? 0) - (roomData.scores?.[a.id] ?? 0)) as player, i}
           <div class="score-row {player.id === localPlayerId ? 'score-row-me' : ''}">
             <img src={`/images/avatares/${player.avatar ?? 'magikarp'}.png`} alt={player.avatar ?? ''} class="player-avatar-img" />
@@ -160,9 +167,9 @@
       {:else if currentRound.discardedPlayerIds.includes(localPlayerId)}
         <!-- Discarded player sees eliminated screen -->
         <div class="eliminated-screen">
-          <p class="eliminated-emoji">💀</p>
-          <p class="eliminated-title">¡Te pescaron!</p>
-          <p class="eliminated-text">Espera a que termine la ronda</p>
+          <p class="eliminated-emoji">{t('game.eliminated.emoji')}</p>
+          <p class="eliminated-title">{t('game.eliminated.title')}</p>
+          <p class="eliminated-text">{t('game.eliminated.text')}</p>
         </div>
       {:else if localRole}
         <PlayerView

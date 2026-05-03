@@ -3,6 +3,7 @@
   import { playerStore, setCurrentRoom } from '../stores/playerStore';
   import { startGame, startRound } from '../lib/gameService';
   import { leaveRoom } from '../lib/roomService';
+  import { tt } from '../lib/i18n/index';
   import QRCode from 'qrcode';
 
   let { roomCode } = $props();
@@ -13,25 +14,27 @@
   let error = $state('');
   let qrDataUrl = $state('');
 
-  // Subscribe to room store
+  let t = $state((key, params) => key);
+  $effect(() => {
+    const unsub = tt.subscribe((fn) => { t = fn; });
+    return unsub;
+  });
+
   $effect(() => {
     const unsubRoom = room.subscribe((value) => { roomData = value; });
     return unsubRoom;
   });
 
-  // Subscribe to player store
   $effect(() => {
     const unsubPlayer = playerStore.subscribe((value) => { localPlayerId = value.playerId; });
     return unsubPlayer;
   });
 
-  // Subscribe to Firestore room on mount
   $effect(() => {
     const unsubscribe = subscribeToRoom(roomCode);
     return unsubscribe;
   });
 
-  // Generate QR code
   $effect(() => {
     const url = `${window.location.origin}/?join=${roomCode}`;
     QRCode.toDataURL(url, {
@@ -54,7 +57,7 @@
       await startGame(roomCode);
       await startRound(roomCode);
     } catch (err) {
-      error = err?.message ?? 'Error al iniciar la partida.';
+      error = err?.message ?? 'Error';
       loading = false;
     }
   }
@@ -68,23 +71,21 @@
 
 {#if isWaiting}
   <div class="lobby-container">
-    <!-- Room code + QR -->
     <div class="lobby-card code-card">
-      <p class="code-label">Código de sala</p>
+      <p class="code-label">{t('lobby.codeLabel')}</p>
       <p class="code-value">{roomCode}</p>
 
       {#if qrDataUrl}
         <div class="qr-wrapper">
-          <img src={qrDataUrl} alt="QR para unirse a la sala" class="qr-img" />
+          <img src={qrDataUrl} alt="QR" class="qr-img" />
         </div>
       {/if}
 
-      <p class="code-hint">Comparte el código o escanea el QR</p>
+      <p class="code-hint">{t('lobby.codeHint')}</p>
     </div>
 
-    <!-- Player list -->
     <div class="lobby-card">
-      <h2 class="players-title">🎮 Jugadores ({playerCount})</h2>
+      <h2 class="players-title">{t('lobby.playersTitle', { count: playerCount })}</h2>
 
       {#if roomData?.players?.length}
         <ul class="player-list">
@@ -93,40 +94,32 @@
               <img src={`/images/avatares/${player.avatar ?? 'magikarp'}.png`} alt={player.avatar ?? ''} class="player-avatar-img" style="animation-delay: {i * 0.4}s;" />
               <span class="player-name">{player.name}</span>
               {#if player.id === localPlayerId}
-                <span class="me-badge">Tú</span>
+                <span class="me-badge">{t('lobby.you')}</span>
               {/if}
             </li>
           {/each}
         </ul>
       {:else}
-        <p class="waiting-text">Esperando jugadores...</p>
+        <p class="waiting-text">{t('lobby.waiting')}</p>
       {/if}
     </div>
 
-    <!-- Host controls -->
     {#if isHost}
       {#if error}
         <p class="error-text">⚠️ {error}</p>
       {/if}
 
       {#if !canStart}
-        <p class="min-players-text">
-          Se necesitan al menos 3 jugadores ({playerCount}/3)
-        </p>
+        <p class="min-players-text">{t('lobby.minPlayers', { count: playerCount })}</p>
       {/if}
 
-      <button
-        onclick={handleStart}
-        disabled={!canStart || loading}
-        class="start-btn"
-      >
-        {loading ? '⏳ Iniciando...' : '🚀 Iniciar Partida'}
+      <button onclick={handleStart} disabled={!canStart || loading} class="start-btn">
+        {loading ? t('lobby.startLoading') : t('lobby.startBtn')}
       </button>
     {/if}
 
     <button onclick={handleLeave} class="leave-btn">
-      🚪 Salir de la sala
+      {t('lobby.leaveBtn')}
     </button>
   </div>
 {/if}
-

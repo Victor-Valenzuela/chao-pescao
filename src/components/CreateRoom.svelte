@@ -2,6 +2,7 @@
   import { createRoom, RoomServiceError } from '../lib/roomService';
   import { playerStore, setPlayerName, setCurrentRoom } from '../stores/playerStore';
   import { get } from 'svelte/store';
+  import { tt } from '../lib/i18n/index';
 
   const AVATARS = ['pikachu', 'psyduck', 'magikarp', 'slowpoke', 'snorlax', 'starmie', 'wartortle', 'lapras', 'blastoise', 'gyarados'];
 
@@ -9,6 +10,12 @@
   let selectedAvatar = $state('');
   let loading = $state(false);
   let error = $state('');
+
+  let t = $state((key, params) => key);
+  $effect(() => {
+    const unsub = tt.subscribe((fn) => { t = fn; });
+    return unsub;
+  });
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -22,25 +29,25 @@
       setCurrentRoom(code);
       window.location.href = '/sala?code=' + code;
     } catch (err) {
-      console.error('Error creando sala:', err);
+      console.error('Error creating room:', err);
       if (err instanceof RoomServiceError) { error = err.message; }
-      else { error = 'Error al crear la sala. Intenta de nuevo.'; }
+      else { error = t('create.error'); }
       loading = false;
     }
   }
 </script>
 
 <form onsubmit={handleSubmit} class="form-card">
-  <h2 class="form-title form-title-cyan">🏠 Crear Sala</h2>
-  <p class="form-subtitle">Ingresa tu nombre y elige tu avatar</p>
+  <h2 class="form-title form-title-cyan">{t('create.title')}</h2>
+  <p class="form-subtitle">{t('create.subtitle')}</p>
 
   <div class="form-field">
-    <label for="host-name" class="form-label form-label-orange">Tu nombre</label>
-    <input id="host-name" type="text" bind:value={hostName} placeholder="Ej: María" maxlength="12" class="form-input" />
+    <label for="host-name" class="form-label form-label-orange">{t('create.nameLabel')}</label>
+    <input id="host-name" type="text" bind:value={hostName} placeholder={t('create.namePlaceholder')} maxlength="12" class="form-input" />
   </div>
 
   <div class="form-field">
-    <p class="form-label form-label-orange">Tu avatar</p>
+    <p class="form-label form-label-orange">{t('create.avatarLabel')}</p>
     <div class="avatar-grid">
       {#each AVATARS as avatar}
         <button
@@ -59,6 +66,6 @@
   {/if}
 
   <button type="submit" disabled={!hostName.trim() || !selectedAvatar || loading} class="form-btn form-btn-cyan">
-    {loading ? '⏳ Creando...' : '🏠 Crear Sala'}
+    {loading ? t('create.loading') : t('create.submit')}
   </button>
 </form>

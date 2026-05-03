@@ -88,4 +88,4 @@ Las preguntas en Firestore pueden tener respuestas reales o ocultas (`???`). Par
 
 ## Pendientes
 
-- [ ] Multi-idioma (español, inglés, alemán): selector de banderas al iniciar la app, opción de idioma por defecto en localStorage, traducción de UI y preguntas/respuestas
+- [ ] Multi-idioma (español, inglés, alemán): selector de banderas al iniciar la app, opción de idioma por defecto en localStorage. Cada jugador ve la UI y las preguntas en su propio idioma (las preguntas comparten ID entre idiomas), permitiendo partidas mixtas sin restricción de idioma

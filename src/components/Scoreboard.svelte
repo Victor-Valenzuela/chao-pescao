@@ -1,7 +1,14 @@
 <script>
   import { WIN_SCORE } from '../lib/gameService';
+  import { tt } from '../lib/i18n/index';
 
   let { scores, prevScores = {}, players, onNextRound, endReason = null, isFisher = false, localPlayerId = '', roles = {}, discardedPlayerIds = [] } = $props();
+
+  let t = $state((key, params) => key);
+  $effect(() => {
+    const unsub = tt.subscribe((fn) => { t = fn; });
+    return unsub;
+  });
 
   let sortedPlayers = $derived(
     [...(players ?? [])].sort((a, b) => (scores?.[b.id] ?? 0) - (scores?.[a.id] ?? 0))
@@ -22,38 +29,37 @@
 </script>
 
 <div class="scoreboard-card">
-  <!-- End reason message -->
   {#if endReason === 'last_blue'}
     {#if isFisher}
-      <p class="scoreboard-end-msg scoreboard-msg-green">🎣 ¡No caíste en mentiras!<br/>+1 punto extra</p>
+      <p class="scoreboard-end-msg scoreboard-msg-green">{@html t('score.lastBlue.fisher')}</p>
     {:else if localRole === 'blue'}
-      <p class="scoreboard-end-msg scoreboard-msg-red">🐟 ¡Aprende a mentir mejor!</p>
+      <p class="scoreboard-end-msg scoreboard-msg-red">{@html t('score.lastBlue.blue')}</p>
     {:else}
-      <p class="scoreboard-end-msg scoreboard-msg-neutral">🎣 El pescador descubrió a todos los mentirosos</p>
+      <p class="scoreboard-end-msg scoreboard-msg-neutral">{@html t('score.lastBlue.other')}</p>
     {/if}
   {:else if endReason === 'blue_found'}
     {#if isFisher}
-      <p class="scoreboard-end-msg scoreboard-msg-red">😱 ¡Descartaste al pez azul!<br/>Perdiste los puntos de la ronda</p>
+      <p class="scoreboard-end-msg scoreboard-msg-red">{@html t('score.blueFound.fisher')}</p>
     {:else if localRole === 'blue'}
-      <p class="scoreboard-end-msg scoreboard-msg-green">🎉 ¡Te pescaron por error!<br/>+1 punto para ti</p>
+      <p class="scoreboard-end-msg scoreboard-msg-green">{@html t('score.blueFound.blue')}</p>
     {:else if localRole === 'red' && !wasDiscarded}
-      <p class="scoreboard-end-msg scoreboard-msg-green">🤫 No te descubrieron mintiendo<br/>+1 punto</p>
+      <p class="scoreboard-end-msg scoreboard-msg-green">{@html t('score.blueFound.redSafe')}</p>
     {:else}
-      <p class="scoreboard-end-msg scoreboard-msg-neutral">😱 El pescador descartó al pez azul</p>
+      <p class="scoreboard-end-msg scoreboard-msg-neutral">{@html t('score.blueFound.other')}</p>
     {/if}
   {:else if endReason === 'fisher_stopped'}
     {#if isFisher}
-      <p class="scoreboard-end-msg scoreboard-msg-neutral">✋ Terminaste tu turno<br/>Conservaste tus puntos</p>
+      <p class="scoreboard-end-msg scoreboard-msg-neutral">{@html t('score.stopped.fisher')}</p>
     {:else if localRole === 'red' && !wasDiscarded}
-      <p class="scoreboard-end-msg scoreboard-msg-green">🤫 ¡Supiste mentir!<br/>+1 punto</p>
+      <p class="scoreboard-end-msg scoreboard-msg-green">{@html t('score.stopped.redSafe')}</p>
     {:else if localRole === 'blue'}
-      <p class="scoreboard-end-msg scoreboard-msg-red">🐟 No lograste engañar al pescador</p>
+      <p class="scoreboard-end-msg scoreboard-msg-red">{@html t('score.stopped.blue')}</p>
     {:else}
-      <p class="scoreboard-end-msg scoreboard-msg-neutral">✋ Se terminó la ronda</p>
+      <p class="scoreboard-end-msg scoreboard-msg-neutral">{@html t('score.stopped.other')}</p>
     {/if}
   {/if}
 
-  <h2 class="scoreboard-title">🏆 Marcador</h2>
+  <h2 class="scoreboard-title">{t('score.title')}</h2>
 
   {#if sortedPlayers.length}
     <div class="scoreboard-list">
@@ -73,13 +79,13 @@
   {/if}
 
   {#if hasWinner}
-    <p class="scoreboard-winner">🎉 ¡{sortedPlayers[0]?.name} llegó a {WIN_SCORE} puntos!</p>
+    <p class="scoreboard-winner">{t('score.winner', { name: sortedPlayers[0]?.name, points: WIN_SCORE })}</p>
     <button onclick={() => window.location.href = '/'} class="scoreboard-btn scoreboard-btn-green">
-      🏆 Ver Resultados
+      {t('score.resultsBtn')}
     </button>
   {:else if onNextRound}
     <button onclick={onNextRound} class="scoreboard-btn scoreboard-btn-cyan">
-      🎣 Siguiente Ronda
+      {t('score.nextRound')}
     </button>
   {/if}
 </div>

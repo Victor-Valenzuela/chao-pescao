@@ -20,6 +20,9 @@ pnpm-debug.log*
 # Firebase service account
 service-account.json
 
+# Firebase project config (local)
+.firebaserc
+
 # macOS-specific files
 .DS_Store
 

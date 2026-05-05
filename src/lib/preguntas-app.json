@@ -1,0 +1,652 @@
+{
+  "info_categorias": {
+    "Leyes y Costumbres": 34,
+    "Reino Animal": 42,
+    "Historia y Curiosidades": 38,
+    "Idiomas y Palabras": 15,
+    "Deportes y Ocio": 16,
+    "Récords y Fenómenos": 15
+  },
+  "respuestas": [
+    {
+      "id": 1,
+      "pregunta": "¿Qué está legalmente prohibido hacer en el Parlamento británico?"
+    },
+    {
+      "id": 2,
+      "pregunta": "En el siglo XVIII, ¿qué parte del cuerpo se creía que las piñas podían curar si se aplicaban directamente?"
+    },
+    {
+      "id": 3,
+      "pregunta": "¿Qué objeto cotidiano fue inventado por un fabricante de ataúdes para evitar que sus competidores le robaran clientes?"
+    },
+    {
+      "id": 4,
+      "pregunta": "En Suiza, ¿qué es ilegal hacer después de las 10 de la noche si vives en un apartamento?"
+    },
+    {
+      "id": 5,
+      "pregunta": "¿Cuál es el 'deporte nacional' oficial del estado de Maryland, en Estados Unidos?"
+    },
+    {
+      "id": 6,
+      "pregunta": "¿A qué cargo u oficio fue nombrado un caballo llamado Incitatus por el emperador Calígula?"
+    },
+    {
+      "id": 7,
+      "pregunta": "En Turín, Italia, ¿a qué están obligados por ley los dueños de perros bajo pena de multa?"
+    },
+    {
+      "id": 8,
+      "pregunta": "¿Cuál es la función biológica principal de las rayas de las cebras, según los estudios científicos más recientes?"
+    },
+    {
+      "id": 9,
+      "pregunta": "¿Qué usaba el ejército de Dinamarca durante la Guerra Fría para intentar asustar a los submarinos enemigos?"
+    },
+    {
+      "id": 10,
+      "pregunta": "En Victoria, Australia, ¿qué tipo de profesional es el único autorizado legalmente para cambiar una bombilla?"
+    },
+    {
+      "id": 11,
+      "pregunta": "¿Qué material o sustancia usaban los antiguos romanos para blanquearse los dientes?"
+    },
+    {
+      "id": 12,
+      "pregunta": "En la Inglaterra medieval, ¿qué ingrediente extraño se le añadía a la cerveza para 'darle fuerza' y sabor?"
+    },
+    {
+      "id": 13,
+      "pregunta": "En Francia, ¿con quién o qué está permitido casarse legalmente bajo circunstancias muy especiales?"
+    },
+    {
+      "id": 14,
+      "pregunta": "¿Cuál era el uso médico principal de la Ketchup cuando se vendía en farmacias en 1830?"
+    },
+    {
+      "id": 15,
+      "pregunta": "¿Qué animal es el responsable de la gran mayoría de los cortes de energía en Estados Unidos?"
+    },
+    {
+      "id": 16,
+      "pregunta": "¿Cuál es la verdadera razón física por la que los flamencos pueden dormir sobre una sola pata?"
+    },
+    {
+      "id": 17,
+      "pregunta": "¿Qué producto común es ilegal llevar en la maleta al entrar en Singapur?"
+    },
+    {
+      "id": 18,
+      "pregunta": "¿De qué está hecho el 80% del polvo que acumulamos en nuestras casas?"
+    },
+    {
+      "id": 19,
+      "pregunta": "En Escocia, ¿qué estás obligado a hacer por ley si un desconocido llama a tu puerta y pide usar el baño?"
+    },
+    {
+      "id": 20,
+      "pregunta": "¿Cuál fue el primer juguete u objeto para niños que se anunció en televisión?"
+    },
+    {
+      "id": 21,
+      "pregunta": "¿Qué sonido físico emiten las jirafas para comunicarse entre ellas por la noche?"
+    },
+    {
+      "id": 22,
+      "pregunta": "¿Qué fruta común es botánicamente una 'baya', mientras que la fresa no lo es?"
+    },
+    {
+      "id": 23,
+      "pregunta": "¿Cómo consideraban y trataban los antiguos mayas a los pavos (guajolotes)?"
+    },
+    {
+      "id": 24,
+      "pregunta": "¿En qué país es un delito legal quedarse sin gasolina mientras conduces por la autopista?"
+    },
+    {
+      "id": 25,
+      "pregunta": "En el siglo XIX, ¿qué usaban a veces los dentistas para rellenar las caries antes de que existiera la amalgama?"
+    },
+    {
+      "id": 26,
+      "pregunta": "¿Qué hizo el inventor del Frisbee (Walter Morrison) con sus restos mortales tras fallecer?"
+    },
+    {
+      "id": 27,
+      "pregunta": "¿Qué es lo único que puede hacer un caracol de jardín durante tres años seguidos?"
+    },
+    {
+      "id": 28,
+      "pregunta": "¿En qué parte del cuerpo tiene el corazón un camarón?"
+    },
+    {
+      "id": 29,
+      "pregunta": "En Oklahoma, ¿qué es ilegal hacerle a un perro si pones una 'cara graciosa' o burlona?"
+    },
+    {
+      "id": 30,
+      "pregunta": "¿Qué técnica usan los wombats (marsupiales australianos) para evitar que los depredadores entren en sus madrigueras?"
+    },
+    {
+      "id": 31,
+      "pregunta": "¿Qué producto fabricaba y vendía Nintendo cuando se fundó en el año 1889?"
+    },
+    {
+      "id": 32,
+      "pregunta": "En Arizona, ¿qué es ilegal que haga un burro dentro de una bañera?"
+    },
+    {
+      "id": 33,
+      "pregunta": "Antes de ser actor, ¿cuál era el trabajo de Christopher Walken en un circo?"
+    },
+    {
+      "id": 34,
+      "pregunta": "¿Con qué parte de su cuerpo saborean la comida las mariposas?"
+    },
+    {
+      "id": 35,
+      "pregunta": "En la antigua Grecia, ¿qué acto físico se consideraba una propuesta formal de matrimonio?"
+    },
+    {
+      "id": 36,
+      "pregunta": "¿De qué material están hechas las escamas de los tiburones (que las hace sentir como lija)?"
+    },
+    {
+      "id": 37,
+      "pregunta": "¿Qué país del mundo tiene registradas más pirámides antiguas en su territorio?"
+    },
+    {
+      "id": 38,
+      "pregunta": "¿A través de qué parte de su cuerpo respiran algunas tortugas mientras hibernan bajo el agua?"
+    },
+    {
+      "id": 39,
+      "pregunta": "¿Qué tipo de comida es ilegal tirar a la basura común en la ciudad de Seattle?"
+    },
+    {
+      "id": 40,
+      "pregunta": "¿Cuál era el ingrediente 'especial' que se añadía a la pólvora en la antigüedad para estabilizarla?"
+    },
+    {
+      "id": 41,
+      "pregunta": "¿Qué es ilegal hacer con un cuadro de la Familia Real en Tailandia?"
+    },
+    {
+      "id": 42,
+      "pregunta": "¿Qué animal acuático es capaz de regenerar no solo sus extremidades, sino también su corazón y su cerebro?"
+    },
+    {
+      "id": 43,
+      "pregunta": "¿Qué civilización antigua usaba cráneos humanos como copas para beber en ceremonias importantes?"
+    },
+    {
+      "id": 44,
+      "pregunta": "¿Cuál era la función original de la pequeña bolsa delantera de los pantalones vaqueros (jeans)?"
+    },
+    {
+      "id": 45,
+      "pregunta": "En la antigua Roma, ¿qué se consideraba un castigo legal para los parricidas (quienes mataban a sus padres) antes de ser lanzados al río?"
+    },
+    {
+      "id": 46,
+      "pregunta": "¿Qué hacían los antiguos egipcios como señal de luto cuando su gato doméstico moría?"
+    },
+    {
+      "id": 47,
+      "pregunta": "En Vermont, Estados Unidos, ¿qué necesita una mujer obtener por escrito de su marido para poder usar dentadura postiza?"
+    },
+    {
+      "id": 48,
+      "pregunta": "¿Cuál es el récord de tiempo que un ser humano ha pasado hipnotizado, según registros médicos curiosos del siglo XIX?"
+    },
+    {
+      "id": 49,
+      "pregunta": "¿Qué tipo de criatura es capaz de sobrevivir en el vacío del espacio exterior y a temperaturas cercanas al cero absoluto?"
+    },
+    {
+      "id": 50,
+      "pregunta": "En Japón, ¿qué está mal visto o se considera de mala educación hacer mientras caminas por la calle?"
+    },
+    {
+      "id": 51,
+      "pregunta": "¿Qué animal tiene la lengua tan larga que puede usarla para limpiarse sus propios oídos?"
+    },
+    {
+      "id": 52,
+      "pregunta": "¿Cuál fue el motivo real por el que se inventó la sierra eléctrica originalmente (antes de usarse para madera)?"
+    },
+    {
+      "id": 53,
+      "pregunta": "En la ciudad de Milán, ¿a qué están obligados los ciudadanos por una antigua ley municipal, excepto en funerales o hospitales?"
+    },
+    {
+      "id": 54,
+      "pregunta": "¿Qué nombre recibe el miedo irracional a que un pato te esté observando en todo momento, sin importar dónde estés?"
+    },
+    {
+      "id": 55,
+      "pregunta": "¿De qué material estaba hecha la primera dentadura postiza de George Washington?"
+    },
+    {
+      "id": 56,
+      "pregunta": "¿Qué capacidad física asombrosa tienen las palomas que les permite detectar desastres naturales antes de que ocurran?"
+    },
+    {
+      "id": 57,
+      "pregunta": "En Kentucky, ¿qué es ilegal llevar oculto en el bolsillo trasero del pantalón?"
+    },
+    {
+      "id": 58,
+      "pregunta": "¿Qué sucede con los cuervos si uno de su grupo muere de forma sospechosa o violenta?"
+    },
+    {
+      "id": 59,
+      "pregunta": "¿Cuál es el uso más extraño que se le daba a la orina recolectada en las lavanderías de la antigua Roma?"
+    },
+    {
+      "id": 60,
+      "pregunta": "En Samoa, ¿qué acto relacionado con tu esposa es técnicamente un delito legal si se te olvida hacerlo?"
+    },
+    {
+      "id": 61,
+      "pregunta": "¿Qué objeto peculiar lanzaron los astronautas del Apolo 11 a la superficie de la Luna como símbolo de paz?"
+    },
+    {
+      "id": 62,
+      "pregunta": "¿Qué forma geométrica inusual tienen los excrementos de los wombats?"
+    },
+    {
+      "id": 63,
+      "pregunta": "¿Qué parte de la planta de la piña (ananá) tarda casi dos años en crecer antes de dar fruto?"
+    },
+    {
+      "id": 64,
+      "pregunta": "En la antigua Inglaterra, ¿qué se creía que podías curar si pasabas a un niño por el agujero de un tronco de árbol?"
+    },
+    {
+      "id": 65,
+      "pregunta": "¿Qué animal puede cambiar su género de macho a hembra si la hembra dominante del grupo muere?"
+    },
+    {
+      "id": 66,
+      "pregunta": "¿Cuál es el ingrediente principal que le da el color rosa artificial a muchos yogures de fresa industriales?"
+    },
+    {
+      "id": 67,
+      "pregunta": "¿Qué sonido produce un canguro cuando está enojado o se siente amenazado?"
+    },
+    {
+      "id": 68,
+      "pregunta": "En Noruega, ¿qué cargo militar de alto rango ostenta un pingüino llamado Nils Olav III?"
+    },
+    {
+      "id": 69,
+      "pregunta": "¿De qué están hechos realmente los diamantes que caen como lluvia en los planetas Júpiter y Saturno?"
+    },
+    {
+      "id": 70,
+      "pregunta": "¿Qué peculiaridad tienen los ojos de los avestruces en comparación con su cerebro?"
+    },
+    {
+      "id": 71,
+      "pregunta": "¿Qué técnica de supervivencia usan los pepinos de mar cuando se sienten atacados?"
+    },
+    {
+      "id": 72,
+      "pregunta": "En Islandia, ¿qué creencia popular en seres mágicos hace que el gobierno a veces desvíe la construcción de carreteras?"
+    },
+    {
+      "id": 73,
+      "pregunta": "¿Cuál es la verdadera función de las bolsas de las mejillas de las ardillas listadas (chipmunks)?"
+    },
+    {
+      "id": 74,
+      "pregunta": "¿Qué país europeo prohibió los hornos microondas durante un corto periodo de tiempo por creer que causaban cáncer instantáneo?"
+    },
+    {
+      "id": 75,
+      "pregunta": "¿Qué parte del cuerpo de los caballos nunca deja de crecer a lo largo de toda su vida?"
+    },
+    {
+      "id": 76,
+      "pregunta": "En los años 50, ¿qué se pensaba que era el 'humo de los cigarrillos' en términos de salud respiratoria?"
+    },
+    {
+      "id": 77,
+      "pregunta": "¿Qué animal es capaz de reconocerse en un espejo, además de los humanos y los grandes simios?"
+    },
+    {
+      "id": 78,
+      "pregunta": "En el estado de Georgia, ¿qué es ilegal que hagan los pollos para cruzar la carretera?"
+    },
+    {
+      "id": 79,
+      "pregunta": "¿Cuál es el 'árbol' más grande del mundo que técnicamente no es un árbol, sino una hierba gigante?"
+    },
+    {
+      "id": 80,
+      "pregunta": "¿Qué fenómeno meteorológico ocurre exclusivamente en la ciudad de Yoro, Honduras, casi todos los años?"
+    },
+    {
+      "id": 81,
+      "pregunta": "¿Qué animal marino tiene tres corazones, sangre azul y un cerebro en forma de rosquilla?"
+    },
+    {
+      "id": 82,
+      "pregunta": "En el antiguo Egipto, ¿qué ingrediente usaban las mujeres como prueba de embarazo casera?"
+    },
+    {
+      "id": 83,
+      "pregunta": "¿Qué capacidad asombrosa tienen los dientes de los caracoles de mar (lapas) en cuanto a dureza?"
+    },
+    {
+      "id": 84,
+      "pregunta": "En Indonesia, ¿qué castigo legal reciben quienes son pillados conduciendo sin casco en ciertas regiones?"
+    },
+    {
+      "id": 85,
+      "pregunta": "¿Cuál es la función real de la 'pelusilla' que tienen los melocotones (duraznos) en su piel?"
+    },
+    {
+      "id": 86,
+      "pregunta": "¿Qué sustancia química, que hoy sabemos que es tóxica, usaban las mujeres victorianas en sus ojos para dilatar las pupilas y parecer más atractivas?"
+    },
+    {
+      "id": 87,
+      "pregunta": "En la antigua Roma, ¿qué profesión tenían los hombres que se encargaban de limpiar el sudor de los gladiadores para venderlo después?"
+    },
+    {
+      "id": 88,
+      "pregunta": "¿Qué animal puede dormir con una mitad del cerebro despierta y un ojo abierto para vigilar depredadores?"
+    },
+    {
+      "id": 89,
+      "pregunta": "¿Cuál es el propósito original de las rayas verticales que tienen los vasos de plástico rojos (tipo Solo Cup)?"
+    },
+    {
+      "id": 90,
+      "pregunta": "En Australia, ¿qué es ilegal hacer con un animal que ha muerto por causas naturales en la carretera?"
+    },
+    {
+      "id": 91,
+      "pregunta": "¿Qué extraño 'poder' tienen las ratas topo desnudas que las hace únicas entre todos los mamíferos?"
+    },
+    {
+      "id": 92,
+      "pregunta": "¿Qué instrumento musical fue inventado por Benjamin Franklin y llegó a ser prohibido en algunas partes de Europa porque decían que causaba locura?"
+    },
+    {
+      "id": 93,
+      "pregunta": "¿Qué objeto insólito fue enviado oficialmente por correo postal en Estados Unidos a principios del siglo XX?"
+    },
+    {
+      "id": 94,
+      "pregunta": "¿Qué le sucede físicamente a una hormiga si cae desde lo alto de un rascacielos como el Empire State?"
+    },
+    {
+      "id": 95,
+      "pregunta": "En Tailandia, ¿qué es ilegal salir de casa sin llevar puesto debajo de la ropa?"
+    },
+    {
+      "id": 96,
+      "pregunta": "¿Qué tipo de 'regalo' le entregan los pingüinos Adelia a su pareja para proponerles compromiso?"
+    },
+    {
+      "id": 97,
+      "pregunta": "¿Cuál es la verdadera razón por la que los perros caminan en círculos antes de acostarse?"
+    },
+    {
+      "id": 98,
+      "pregunta": "En la Edad Media, ¿qué animal podía ser llevado a juicio legal, tener un abogado y ser condenado a muerte por un crimen?"
+    },
+    {
+      "id": 99,
+      "pregunta": "¿De qué color es la leche de los hipopótamos?"
+    },
+    {
+      "id": 100,
+      "pregunta": "¿Qué objeto de oficina fue inventado originalmente para limpiar el papel tapiz de las paredes?"
+    },
+    {
+      "id": 101,
+      "pregunta": "En Florida, ¿qué es ilegal hacer si eres dueño de un elefante y lo dejas atado a un parquímetro?"
+    },
+    {
+      "id": 102,
+      "pregunta": "¿Qué sonido emiten los guepardos (cheetahs) en lugar de rugir como los leones?"
+    },
+    {
+      "id": 103,
+      "pregunta": "¿Qué ingrediente se utiliza en la fabricación de dinamita que también se encuentra en los cacahuetes (maníes)?"
+    },
+    {
+      "id": 104,
+      "pregunta": "¿Qué extraño requisito legal existía en Inglaterra en el siglo XVII para ser enterrado?"
+    },
+    {
+      "id": 105,
+      "pregunta": "¿Cuál es el récord mundial de la mayor cantidad de hijos nacidos de una sola madre en la historia?"
+    },
+    {
+      "id": 106,
+      "pregunta": "¿Qué animal tiene la huella dactilar casi idéntica a la de un ser humano, hasta el punto de confundir a la policía?"
+    },
+    {
+      "id": 107,
+      "pregunta": "En la antigua China, ¿qué parte del cuerpo se consideraba que contenía la inteligencia, en lugar del cerebro?"
+    },
+    {
+      "id": 108,
+      "pregunta": "¿Qué animal puede sobrevivir hasta 10 días sin cabeza antes de morir de hambre?"
+    },
+    {
+      "id": 109,
+      "pregunta": "¿Cómo se llama el fenómeno en el que los pájaros carpinteros almacenan miles de bellotas en los agujeros que hacen en las casas?"
+    },
+    {
+      "id": 110,
+      "pregunta": "¿Qué es ilegal hacer en el estado de Washington con una criatura legendaria como el Bigfoot o Sasquatch?"
+    },
+    {
+      "id": 111,
+      "pregunta": "¿Qué parte de la anatomía de un pulpo está situada en su cabeza y rodea su esófago?"
+    },
+    {
+      "id": 112,
+      "pregunta": "¿Cuál es el motivo por el que los astronautas no pueden eructar correctamente en el espacio?"
+    },
+    {
+      "id": 113,
+      "pregunta": "¿Qué animal es el único mamífero capaz de volar (no solo planear)?"
+    },
+    {
+      "id": 114,
+      "pregunta": "En Suiza, ¿qué animal social es ilegal tener como mascota única (necesitas tener al menos dos por ley)?"
+    },
+    {
+      "id": 115,
+      "pregunta": "¿Qué hacían los piratas realmente con los parches en el ojo, además de ocultar heridas?"
+    },
+    {
+      "id": 116,
+      "pregunta": "¿Cuál es la velocidad de crecimiento promedio de los dientes de un conejo a lo largo de un año?"
+    },
+    {
+      "id": 117,
+      "pregunta": "¿Qué material usaban los aztecas para fabricar sus espejos?"
+    },
+    {
+      "id": 118,
+      "pregunta": "En el siglo XVII, ¿qué alimento se consideraba 'la fruta del diablo' en Prusia y se obligaba a la gente a cultivarlo bajo amenaza de tortura?"
+    },
+    {
+      "id": 119,
+      "pregunta": "¿Qué sucede con los ojos de un calamar gigante si se expone a la luz directa del sol?"
+    },
+    {
+      "id": 120,
+      "pregunta": "¿Qué animal tiene el periodo de gestación (embarazo) más largo del mundo, llegando a casi dos años?"
+    },
+    {
+      "id": 121,
+      "pregunta": "¿Qué significa literalmente la palabra galesa 'Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch'?"
+    },
+    {
+      "id": 122,
+      "pregunta": "¿En qué consiste el deporte extremo conocido como 'Extreme Ironing' (Planchado Extremo)?"
+    },
+    {
+      "id": 123,
+      "pregunta": "¿Cuál es el récord Guinness de la mayor cantidad de personas dentro de un solo coche de modelo Smart?"
+    },
+    {
+      "id": 124,
+      "pregunta": "En el idioma finés, ¿qué significa la palabra 'Kalsarikännit'?"
+    },
+    {
+      "id": 125,
+      "pregunta": "¿Qué objeto inusual utilizó un hombre llamado Michel Lotito para ganar un récord Guinness tras comérselo entero durante dos años?"
+    },
+    {
+      "id": 126,
+      "pregunta": "¿Cuál es la regla principal del deporte 'Chess Boxing' (Ajedrez Boxeo)?"
+    },
+    {
+      "id": 127,
+      "pregunta": "¿Qué significa la palabra hawaiana 'Pana Po'o'?"
+    },
+    {
+      "id": 128,
+      "pregunta": "¿Qué deporte nacional de Escocia consiste en lanzar un tronco gigante de 6 metros lo más recto posible?"
+    },
+    {
+      "id": 129,
+      "pregunta": "¿Cuál es el récord mundial de la mayor distancia recorrida por un guisante (arveja) al ser soplado con la nariz?"
+    },
+    {
+      "id": 130,
+      "pregunta": "En Japón existe el 'Boutaoshi', ¿en qué consiste este deporte de contacto masivo?"
+    },
+    {
+      "id": 131,
+      "pregunta": "¿Qué significa el término 'Mamihlapinatapai' del idioma yagán de Tierra del Fuego?"
+    },
+    {
+      "id": 132,
+      "pregunta": "¿Cuál es el récord Guinness más doloroso que ostenta un hombre llamado Thomas Blackthorne?"
+    },
+    {
+      "id": 133,
+      "pregunta": "¿Qué es el 'Ferret Legging', un deporte que fue popular en algunas zonas rurales de Inglaterra?"
+    },
+    {
+      "id": 134,
+      "pregunta": "¿Qué significa la palabra sánscrita 'Googol' (que dio origen al nombre de Google)?"
+    },
+    {
+      "id": 135,
+      "pregunta": "¿Cuál es el récord mundial de velocidad de una cortadora de césped modificada?"
+    },
+    {
+      "id": 136,
+      "pregunta": "¿En qué consiste el campeonato mundial de 'Cooper's Hill', que se celebra anualmente en Inglaterra?"
+    },
+    {
+      "id": 137,
+      "pregunta": "¿Qué significa la palabra esquimal (Inuktitut) 'Iktsuarpok'?"
+    },
+    {
+      "id": 138,
+      "pregunta": "¿Qué parte de su cuerpo utilizó Ashrita Furman para romper el récord de romper la mayor cantidad de sandías en un minuto?"
+    },
+    {
+      "id": 139,
+      "pregunta": "¿Qué es el 'Eukonkanto', un deporte oficial que nació en Finlandia?"
+    },
+    {
+      "id": 140,
+      "pregunta": "En Indonesia, ¿cuál es el objetivo del deporte tradicional 'Sepak Takraw'?"
+    },
+    {
+      "id": 141,
+      "pregunta": "¿Qué significa la palabra japonesa 'Age-otori'?"
+    },
+    {
+      "id": 142,
+      "pregunta": "¿Cuál es el récord Guinness de la mayor cantidad de cucharas equilibradas sobre un rostro humano?"
+    },
+    {
+      "id": 143,
+      "pregunta": "¿En qué consiste el deporte llamado 'Toe Wrestling' que tiene su propio campeonato mundial?"
+    },
+    {
+      "id": 144,
+      "pregunta": "¿Qué significa la palabra bantú 'Ilunga'?"
+    },
+    {
+      "id": 145,
+      "pregunta": "¿Cuál es el récord Guinness de la persona que más tiempo ha pasado sin parpadear?"
+    },
+    {
+      "id": 146,
+      "pregunta": "¿Qué es el 'Hobby Horsing', un deporte que se ha vuelto viral en los países nórdicos?"
+    },
+    {
+      "id": 147,
+      "pregunta": "¿Qué significa la palabra rusa 'Pochemuchka'?"
+    },
+    {
+      "id": 148,
+      "pregunta": "¿Cuál es el récord mundial de la mayor cantidad de camisetas (T-shirts) puestas al mismo tiempo?"
+    },
+    {
+      "id": 149,
+      "pregunta": "¿Qué extraño objeto se lanza en el campeonato mundial de 'Wife Carrying' además de las esposas?"
+    },
+    {
+      "id": 150,
+      "pregunta": "¿Qué significa la palabra italiana 'Culaccino'?"
+    },
+    {
+      "id": 151,
+      "pregunta": "¿Cuál es el récord Guinness de la mayor cantidad de pasos dados por un perro equilibrando un vaso de agua en la cabeza?"
+    },
+    {
+      "id": 152,
+      "pregunta": "¿Qué deporte consiste en bucear en un pantano de lodo con aletas y tubo de respirar?"
+    },
+    {
+      "id": 153,
+      "pregunta": "¿Qué significa la palabra noruega 'Utepils'?"
+    },
+    {
+      "id": 154,
+      "pregunta": "¿Cuál es el récord mundial de la mayor cantidad de globos inflados con la nariz en 3 minutos?"
+    },
+    {
+      "id": 155,
+      "pregunta": "En el deporte 'Kabaddi', popular en India, ¿qué debe gritar el atacante constantemente mientras está en el campo rival?"
+    },
+    {
+      "id": 156,
+      "pregunta": "¿Qué significa la palabra holandesa 'Gezellig'?"
+    },
+    {
+      "id": 157,
+      "pregunta": "¿Cuál es el récord Guinness del objeto más pesado levantado con un párpado humano?"
+    },
+    {
+      "id": 158,
+      "pregunta": "¿En qué consiste el concurso 'Naki Sumo' en Japón?"
+    },
+    {
+      "id": 159,
+      "pregunta": "¿Qué significa la palabra indonesia 'Jayus'?"
+    },
+    {
+      "id": 160,
+      "pregunta": "¿Qué récord Guinness tiene el 'Hákarl' de Islandia (tiburón fermentado)?"
+    }
+  ]
+}

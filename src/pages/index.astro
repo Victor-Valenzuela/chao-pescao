@@ -1,0 +1,30 @@
+---
+import '../styles/global.css';
+import HomeScreen from '../components/HomeScreen.svelte';
+---
+
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/png" href="/images/favicon-96x96.png" sizes="96x96" />
+		<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+		<link rel="shortcut icon" href="/images/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet" />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="manifest" href="/images/site.webmanifest" />
+		<meta name="theme-color" content="#0a5e8a" />
+		<title>Chao Pescao</title>
+	</head>
+	<body class="m-0 p-0 font-body">
+		<HomeScreen client:load />
+		<script>
+			if ('serviceWorker' in navigator) {
+				navigator.serviceWorker.register('/sw.js');
+			}
+		</script>
+	</body>
+</html>

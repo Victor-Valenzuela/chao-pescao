@@ -1,0 +1,26 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Salas de juego: lectura y escritura para todos los jugadores
+    match /rooms/{roomCode} {
+      allow read, write: if true;
+    }
+
+    // Banco de preguntas: lectura y escritura (para seed scripts)
+    match /questions/{questionId} {
+      allow read, write: if true;
+    }
+
+    // Preguntas traducidas por idioma
+    match /questions_es/{questionId} {
+      allow read, write: if true;
+    }
+    match /questions_en/{questionId} {
+      allow read, write: if true;
+    }
+    match /questions_de/{questionId} {
+      allow read, write: if true;
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+    "hosting": {
+        "public": "dist",
+        "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+        "rewrites": [{
+                "source": "/sala/**",
+                "destination": "/sala/index.html"
+            },
+            {
+                "source": "**",
+                "destination": "/index.html"
+            }
+        ]
+    },
+    "firestore": {
+        "rules": "firestore.rules"
+    }
+}

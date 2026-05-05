@@ -73,6 +73,12 @@
     if (roundStatus === 'fishing' && currentRound?.roundNumber) {
       soundRoundStart();
     }
+    if (roundStatus === 'ended' && roomData?.scores) {
+      const hasWinner = Object.values(roomData.scores).some((s) => s >= 15);
+      if (hasWinner) {
+        soundVictory();
+      }
+    }
   });
 
   let isFisher = $derived(localPlayerId === currentRound?.fisherId);

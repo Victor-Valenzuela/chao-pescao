@@ -1,7 +1,7 @@
 <script>
   import { discardPlayer, stopFishing } from '../lib/gameService';
   import { tt } from '../lib/i18n/index';
-  import { soundDiscard, soundClick } from '../lib/soundService';
+  import { soundDiscard } from '../lib/soundService';
 
   let { roomCode, question, players, discardedPlayerIds, roundPoints = 0 } = $props();
 

@@ -5,7 +5,7 @@
 
   let { roomCode, currentDiscard, isFisher, targetPlayerName, isTargetPlayer = false } = $props();
 
-  let secondsLeft = $state(10);
+  let secondsLeft = $state(5);
   let revealed = $state(false);
 
   let t = $state((key, params) => key);
@@ -14,35 +14,25 @@
     return unsub;
   });
 
-  let prevSecondsLeft = $state(10);
+  let tickStarted = false;
 
+  // Simple local countdown: starts at 5, ticks every second
   $effect(() => {
-    if (!currentDiscard?.startedAt || revealed) return;
+    if (tickStarted) return;
+    tickStarted = true;
 
-    const startMs = currentDiscard.startedAt.seconds
-      ? currentDiscard.startedAt.seconds * 1000
-      : currentDiscard.startedAt.toDate?.()
-        ? currentDiscard.startedAt.toDate().getTime()
-        : Date.now();
+    soundTick(); // Play once — audio covers the full countdown
 
-    function tick() {
-      const elapsed = (Date.now() - startMs) / 1000;
-      const remaining = Math.max(0, 5 - elapsed);
-      const newSeconds = Math.ceil(remaining);
-      if (newSeconds !== prevSecondsLeft && newSeconds > 0) {
-        soundTick();
-        prevSecondsLeft = newSeconds;
-      }
-      secondsLeft = newSeconds;
+    const interval = setInterval(() => {
+      secondsLeft--;
 
-      if (remaining <= 0 && !revealed) {
+      if (secondsLeft <= 0) {
+        clearInterval(interval);
         revealed = true;
         revealDiscard(roomCode).catch(() => {});
       }
-    }
+    }, 1000);
 
-    tick();
-    const interval = setInterval(tick, 250);
     return () => clearInterval(interval);
   });
 </script>

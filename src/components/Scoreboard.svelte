@@ -1,7 +1,7 @@
 <script>
   import { WIN_SCORE } from '../lib/gameService';
   import { tt } from '../lib/i18n/index';
-  import { soundVictory, soundPointGain } from '../lib/soundService';
+  import { soundPointGain } from '../lib/soundService';
 
   let { scores, prevScores = {}, players, onNextRound, endReason = null, isFisher = false, localPlayerId = '', roles = {}, discardedPlayerIds = [] } = $props();
 
@@ -24,12 +24,8 @@
 
   // Play sounds on mount
   $effect(() => {
-    if (hasWinner) {
-      soundVictory();
-    } else {
-      const localDiff = (scores?.[localPlayerId] ?? 0) - (prevScores?.[localPlayerId] ?? 0);
-      if (localDiff > 0) soundPointGain();
-    }
+    const localDiff = (scores?.[localPlayerId] ?? 0) - (prevScores?.[localPlayerId] ?? 0);
+    if (localDiff > 0) soundPointGain();
   });
 
   function pointsDiff(playerId) {

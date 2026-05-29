@@ -13,11 +13,16 @@ const translations: Record<Locale, Record<string, string>> = {
 
 const STORAGE_KEY = 'app_locale';
 
+const SUPPORTED_LOCALES: Locale[] = ['es', 'en', 'de'];
+
 function getInitialLocale(): Locale {
     if (typeof window === 'undefined') return 'es';
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved && saved in translations) return saved as Locale;
-    return '';  // empty means not chosen yet
+    // Detect device language
+    const browserLang = navigator.language?.slice(0, 2)?.toLowerCase() ?? '';
+    if (SUPPORTED_LOCALES.includes(browserLang as Locale)) return browserLang as Locale;
+    return 'en'; // fallback
 }
 
 export const locale = writable<Locale | ''>(getInitialLocale());
